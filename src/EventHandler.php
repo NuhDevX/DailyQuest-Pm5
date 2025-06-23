@@ -41,9 +41,9 @@ class EventHandler implements Listener {
         $player = $event->getPlayer();
         $session = DailyQuest::getInstance()->getSessionManager()->getSession($player->getName());
         $completed = $session->getCompleted();
-        $mess = "§7[§bＭｉｓｓｉｏｎ§7] §l§fChỉ tiêu hôm nay là " . Utils::parseTarget($target). " §ex" . $value . " §fbất kì và nhận được §e" . $reward . " §fxu";
+        $mess = "§7[§bＭｉｓｓｉｏｎ§7] §l§fQuest hari ini adalah " . Utils::parseTarget($target). " §ex" . $value . " §fapa saja dan akan mendapatkan §e" . $reward . " §fkoin";
         if($completed >= $value) {
-            $mess = "§aBạn đã hoàn thành chỉ tiêu hôm nay §e§l{$completed}§r§a/§e§l{$value}!";
+            $mess = "§aKamu telah menyelesaikan target hari ini §e§l{$completed}§r§a/§e§l{$value}!";
         }
         $player->sendMessage($mess);
     }
@@ -69,7 +69,7 @@ class EventHandler implements Listener {
             $session->addCompleted();
             $target = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
             $session->addCompleted();
-            $player->sendPopup("§l§fBạn đã bán được§e " . $session->getCompleted() . "§f/§e". $target . " §fnông sản");
+            $player->sendPopup("§l§fKamu telah menjual§e " . $session->getCompleted() . "§f/§e". $target . " §fhasil panen");
         }
     }
 
@@ -90,7 +90,7 @@ class EventHandler implements Listener {
             }
             $target = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
             $session->addCompleted();
-            $player->sendPopup("§l§fBạn đã phá được§e " . $session->getCompleted() . "§f/§e". $target . " §fkhối");
+            $player->sendPopup("§l§fKamu telah menghancurkan§e " . $session->getCompleted() . "§f/§e". $target . " §fblok");
         }
     }
 
@@ -110,7 +110,7 @@ class EventHandler implements Listener {
             }
             $target = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
             $session->addCompleted();
-            $player->sendPopup("§f§lBạn đã đặt được §e" . $session->getCompleted() . "§f/§e". $target . " §fkhối");
+            $player->sendPopup("§f§lKamu telah menaruh §e" . $session->getCompleted() . "§f/§e". $target . " §fblok");
         }
     }
 
@@ -125,7 +125,7 @@ class EventHandler implements Listener {
             }
             $target = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
             $session->addCompleted();
-            $player->sendPopup("§l§fBạn đã nâng cấp được§e " . $session->getCompleted() . "§f/§e". $target .  " §fvật phẩm");
+            $player->sendPopup("§l§fKamu telah meng-upgrade§e " . $session->getCompleted() . "§f/§e". $target . " §fitem");
         }
     }
 
@@ -139,7 +139,7 @@ class EventHandler implements Listener {
             }
             $target = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
             $session->addCompleted();
-            $player->sendPopup("§l§fBạn đã câu được§e " . $session->getCompleted() . "§f/§e". $target .  " §fcá");
+            $player->sendPopup("§l§fKamu telah memancing§e " . $session->getCompleted() . "§f/§e". $target . " §fikan");
         }
     }
 
@@ -155,14 +155,14 @@ class EventHandler implements Listener {
             return;
         }
         if($completed == $target) {
-            $player->sendTitle("§l§aHoàn thành", "§l§aBạn đã hoàn thành chỉ tiêu hôm nay");
+            $player->sendTitle("§l§aSelesai", "§l§aKamu telah menyelesaikan quest hari ini");
             $session = DailyQuest::getInstance()->getSessionManager()->getSession($player->getName());
             $session?->setCompleted($completed + 1);
             $reward = DailyQuest::getInstance()->getYamlProvider()->getReward();
-            $player->sendMessage("§aBạn đã hoàn thành nhiệm vụ hôm nay nhận được§e " . $reward . " §axu");
+            $player->sendMessage("§aKamu telah menyelesaikan misi hari ini dan mendapatkan§e " . $reward . " §akoin");
             if($player->hasPermission("vip.buff")) {
                 $bonusVip = (int)round($reward * (mt_rand(1, 5) / 10));
-                $player->sendMessage("§aBạn đã nhận được §e" . $bonusVip . " §axu hiệu ứng từ§e VIP");
+                $player->sendMessage("§aKamu mendapatkan §e" . $bonusVip . " §akoin tambahan dari efek§e VIP");
                 $reward += $bonusVip;
             }
             \phuongaz\core\utils\Utils::firework($player->getPosition(), Fireworks::TYPE_STAR, Fireworks::COLOR_RED, Fireworks::COLOR_YELLOW);
