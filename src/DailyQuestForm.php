@@ -18,7 +18,7 @@ class DailyQuestForm extends CustomForm {
         $value = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
         $reward = DailyQuest::getInstance()->getYamlProvider()->getReward();
         $this->addLabel("§f§l" . $target . " §ex" . $value . "§fkali");
-        $this->addLabel("§f§lHadiah:§e ". $reward . " §fxu");// xu apaan dah? ga bisa di translate jir
+        $this->addLabel("§f§lHadiah:§e ". $reward . " §fkoin");
 
         $session = DailyQuest::getInstance()->getSessionManager()->getSession($player->getName());
         $completed = $session->getCompleted();
