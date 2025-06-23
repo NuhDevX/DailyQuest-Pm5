@@ -16,7 +16,7 @@ class DailyQuestCommand extends Command {
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) :bool {
         if(!$sender instanceof Player) {
-            $sender->sendMessage("§c§lHệ thống §r§cchỉ dành cho người chơi!");
+            $sender->sendMessage("§c§lSistem ini hanya untuk pemain!");
             return false;
         }else {
             $sender->sendForm(new DailyQuestForm($sender));
