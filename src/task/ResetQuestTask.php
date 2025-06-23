@@ -19,7 +19,7 @@ class ResetQuestTask extends Task {
         $config = DailyQuest::getInstance()->getYamlProvider()->getDate();
         if($date !== $config) {
             DailyQuest::getInstance()->getYamlProvider()->setDate($date);
-            DailyQuest::getInstance()->getServer()->broadcastMessage("§a§lHệ thống §r§ađã reset quest hằng ngày!");
+            DailyQuest::getInstance()->getServer()->broadcastMessage("§a§lSistem telah mengreset quest harian!");
             Utils::randomQuest();
             DailyQuest::getInstance()->getSQLProvider()->dropTable();
             DailyQuest::getInstance()->getSQLProvider()->initTable();
