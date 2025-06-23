@@ -25,6 +25,7 @@ use pocketmine\event\player\PlayerQuitEvent;
 
 class EventHandler implements Listener {
 
+    //thank you chatGpt
     public function onLogin(PlayerLoginEvent $event) :void {
         $player = $event->getPlayer();
         $provider = DailyQuest::getInstance()->getSQLProvider()->getPlayerData($player);
