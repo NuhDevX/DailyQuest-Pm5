@@ -17,12 +17,12 @@ class Utils {
 
     public static function parseTarget(string $target) :string {
         return match($target) {
-            "break" => "phá vỡ",
-            "place" => "đặt",
-            "craft" => "nấu",
-            "enchant" => "phù phép",
-            "fish" => "câu cá",
-            "sellcrop" => "bán nông sản",
+            "break" => "menghancurkan",
+            "place" => "menaruh",
+            "craft" => "membuat",
+            "enchant" => "meng enchant",
+            "fish" => "memancing",
+            "sellcrop" => "hasil bertani",
         };
     }
 
@@ -41,7 +41,7 @@ class Utils {
         DailyQuest::getInstance()->getYamlProvider()->setTargetValue($newValue);
         DailyQuest::getInstance()->getYamlProvider()->setReward($newReward);
         DailyQuest::getInstance()->getYamlProvider()->save();
-        DailyQuest::getInstance()->getServer()->broadcastMessage("§7[§bＭｉｓｓｉｏｎ§7] §l§fChỉ tiêu hôm nay là " . Utils::parseTarget($newTarget). " §ex" . $newValue . "§f bất kì và nhận được §e" . $newReward . " xu");
+        DailyQuest::getInstance()->getServer()->broadcastMessage("§7[§bＭｉｓｓｉｏｎ§7] §l§fQuest hari ini adalah " . Utils::parseTarget($newTarget) . " §ex" . $newValue . "§f secara acak dan akan mendapatkan §e" . $newReward . " koin");;
     }
 
     public static function getRandomTarget() :string {
@@ -69,7 +69,7 @@ class Utils {
     public static function isFinishedQuest(Player $player) :bool {
         $value = DailyQuest::getInstance()->getYamlProvider()->getTargetValue();
         $session = DailyQuest::getInstance()->getSessionManager()->getSession($player->getName());
-        if($session == null) return false;
+        if($session === null) return false;
         return  $session->getCompleted() > $value;
     }
 
